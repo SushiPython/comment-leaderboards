@@ -1,0 +1,177 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+:root {
+  --mainBackgroundColor: #c4c4c4;
+  --accentColor: #3498db;
+  --defaultColor: #555555;
+  --mainWidth: 400px;
+
+  --mainBorderRadius: 8px;
+  --topBarHeight: 50px;
+
+  --overlayWidth: 500px;
+}
+
+body {
+  background-color: var(--mainBackgroundColor);
+  color: var(--defaultColor);
+  font-family: sans-serif;
+  overflow: hidden;
+}
+
+.hidden {
+  display: none;
+}
+
+.mainWrap {
+  background-color: transparent;
+  position: absolute;
+  max-width: var(--mainWidth);
+  width: 100%;
+  height: calc(100% - var(--topBarHeight));
+  left: 50%;
+  transform: translate(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  top: var(--topBarHeight);
+  overflow-y: scroll;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.mainWrap::-webkit-scrollbar {
+  visibility: hidden;
+}
+
+.mainComment {
+  border-radius: var(--mainBorderRadius);
+  margin-top: 10%;
+  border: 3px solid #555555;
+  width: 100%;
+}
+
+.topBar {
+  position: absolute;
+  width: 100%;
+  height: var(--topBarHeight);
+  background-color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.searchBar {
+  background-color: var(--mainBackgroundColor);
+  height: 70%;
+  max-width: var(--mainWidth);
+  width: 100%;
+  position: relative;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.searchInput {
+  width: 100%;
+  height: 100%;
+  border: 0;
+  background-color: transparent;
+  padding-left: 10px;
+  color: var(--textColor);
+}
+
+.searchInput:focus {
+  outline: none;
+}
+
+.searchIcon {
+  position: absolute;
+  height: 60%;
+  right: 10px;
+  top: 20%;
+}
+
+.overlay {
+  position: absolute;
+  height: 97%;
+  max-width: var(--overlayWidth);
+  width: 100%;
+  bottom: -100%;
+  left: 50%;
+  transform: translate(-50%);
+  background-color: white;
+
+  box-shadow: 0px -5px 2px rgba(0, 0, 0, 0.5);
+  border-radius: 11px 11px 0px 0px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  transition: 0.5s;
+}
+
+.overlayTopBar {
+  display: flex;
+  width: 90%;
+  margin-top: 10px;
+  justify-content: space-between;
+}
+
+.profile {
+  width: 80%;
+  background-color: var(--mainBackgroundColor);
+  border-radius: var(--mainBorderRadius);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 100px;
+  position: relative;
+  padding: 10px;
+}
+
+.profileImage {
+  height: 40px;
+  border-radius: var(--mainBorderRadius);
+}
+
+.profileName {
+  margin-left: 10px;
+}
+
+.profilePoints {
+  text-align: right;
+}
+
+.profileInfoWrap {
+  display: flex;
+  align-items: center;
+}
+
+.overlayComment {
+  width: 80%;
+  border-radius: var(--mainBorderRadius);
+  margin-top: 70px;
+  overflow: hidden;
+  background-color: var(--mainBackgroundColor);
+}
+
+.overlayCommentImg {
+  width: 100%;
+}
+
+.overlayCommentLink {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--mainBackgroundColor);
+}
+
+.overlayCommentHref {
+  color: var(--accentColor);
+}

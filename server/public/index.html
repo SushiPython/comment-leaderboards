@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Doodle Comments</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="hidden"><img class="mainComment" src="" /></div>
+    <div class="topBar">
+      <div class="searchBar">
+        <input class="searchInput" id="searchInput" /><img
+          src="search.svg"
+          class="searchIcon"
+        />
+      </div>
+    </div>
+    <div id="mainWrap" class="mainWrap"></div>
+    <div class="overlay" id="overlay">
+      <div class="overlayTopBar">
+        <h3 id="commentText"></h3>
+        <img src="cross.svg" width="20" onclick="hideOverlay()" />
+      </div>
+      <div class="profile">
+        <div class="profileInfoWrap">
+          <img class="profileImage" id="profileImage" />
+          <strong class="profileName" id="profileName"></strong>
+        </div>
+        <strong class="profilePoints" id="profilePoints"></strong>
+      </div>
+      <div class="overlayComment">
+        <img class="overlayCommentImg" id="comment" />
+        <div class="overlayCommentLink">
+          <a href="" class="overlayCommentHref" id="commentLink"></a>
+        </div>
+      </div>
+    </div>
+    <script src="scrollview.js"></script>
+    <script src="main.js"></script>
+  </body>
+</html>

@@ -1,0 +1,5 @@
+{
+  "dbUrl": "mongodb+srv://dbUser2:MjQhsMH96ygHW2B@cluster0.kbf9m.mongodb.net/myFirstDatabase?retryWrites=true&w=majority",
+  "db": "main",
+  "port": 3000
+}
