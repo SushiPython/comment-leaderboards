@@ -3,10 +3,18 @@ import discord
 import pymongo
 import datetime
 
-comment_channel_id = 999
 
-database_username = "dbUser"
+# Customizable Values
+comment_channel_id = 
+database_username = ""
+database_password = ""
+bot_token = ""
+mongodb_url = f""
+# End of customizable values
 
+
+
+c = pymongo.MongoClient(mongodb_url)
 db = c.main.entries
 
 prefix = "?"
@@ -38,12 +46,11 @@ async def on_message(message):
         error = True
         error_reason = "Image not attatched"
     
-
+    await message.delete()
     if error == True:
-        await message.channel.send('Process error, reason: `{error_reason}`')
+        await message.channel.send(f'<@{message.author.id}> Process error, reason: `{error_reason}`')
     else:
-        await message.delete()
-        embed=discord.Embed(title="Comment Info", description="After 2 verifications, comment will be added")
+        embed=discord.Embed(title="Comment Info", description="After 4 reactions, comment will be added")
         embed.add_field(name="User", value=message.author.name, inline=False)
         embed.add_field(name="Comment", value=comment_content, inline=False)
         embed.add_field(name="Video", value=youtube_url, inline=False)
@@ -52,14 +59,16 @@ async def on_message(message):
         await sent.add_reaction('👍')
         db.insert_one({
             "videoUrl": youtube_url,
-            "youtubeId": youtube_url[-11:],
+            "youtubeId": youtube_url[-11:], #may not always be accurate
             "userTag": f"{message.author.display_name}#{message.author.discriminator}",
             "userId": message.author.id,
             "type": "comment",
             "time": datetime.datetime.now(),
             "messageId": sent.id,
             "verified": False,
-            "comment": comment_content
+            "comment": comment_content,
+            "avatar": message.author.avatar,
+            "comment_url": image_url
         })
     
 
@@ -69,8 +78,10 @@ async def on_raw_reaction_add(payload):
         if payload.emoji.name == "👍":
             channel = bot.get_channel(comment_channel_id)
             message = await channel.fetch_message(payload.message_id)
-            reaction = discord.get(message.reactions, emoji=payload.emoji.name)
-            if reaction and reaction.count >= 2:
+            reaction = discord.utils.get(message.reactions, emoji=payload.emoji.name)
+            print(reaction.count)
+            if reaction and reaction.count > 3:
+                await message.delete()
                 db.update_one({
                     "messageId": message.id
                 },
@@ -79,3 +90,5 @@ async def on_raw_reaction_add(payload):
                 }})
                 await message.channel.send("Comment verified, thanks!")
 
+
+bot.run(bot_token)
