@@ -53,9 +53,9 @@ const getComment = async (youtubeId) => {
     success: true,
     text: comment.comment,
     userName: comment.userTag,
-    userImage: /*TODO PATH TO IMAGE*/ "profile.webp",
+    userImage: comment.avatar,
     userPoints: points,
-    image: /* TODO Comment image*/ "img.png",
+    image: comment.comment_url,
     link: comment.videoUrl,
   };
 };
